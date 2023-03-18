@@ -35,20 +35,12 @@ const createUser = [
     }
 ];
 
-// Validacion en hdb cambiar!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-
 const resetPassword = [
     check("password")
         .exists()
         .isLength({ min: 8, max: 16 })
         .withMessage("Between 8 a 16 characters")
         .trim(),
-    // check("password_2")
-    //     .custom(async (password_2, { req }) => {
-    //         if (req.body.password_1 !== password_2) {
-    //             throw new Error("Password must be identical");
-    //         }
-    //     }),
     (req, res, next) => {
         const token = req.params.token;
         const errors = validationResult(req);
