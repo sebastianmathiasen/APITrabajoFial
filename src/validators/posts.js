@@ -17,9 +17,9 @@ const createPost = [
         .notEmpty()
         .withMessage("Field cannot be empty"),
     check("fictionalWay")
-        .trim()
-        .notEmpty()
-        .withMessage("Field cannot be empty"),
+        .trim(),
+        // .notEmpty()
+        // .withMessage("Field cannot be empty"),
     (req, res, next) => {
         const errors = validationResult(req);
         if (!errors.isEmpty()) {

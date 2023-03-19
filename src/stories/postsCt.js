@@ -16,10 +16,13 @@ const listAllPost = (req, res, next) => {
 // Find by title
 const findByTitle = (req, res, next) => {
     const query = req.params.query;
-    const regex = new RegExp(query, 'i'); // Create a case-insensitive regex for the query
-    Post.find({ $or: [{ historicalFact: regex }, { story: regex }] }) // Search using the regex in historicalFact and story fields
+    const regex = new RegExp(query, 'i');
+    Post.find({ $or: [{ historicalFact: regex }, { story: regex }] })
         .exec()
         .then((result) => {
+            if (result.length === 0) {
+                return res.status(404).json({ message: "No results found for the search query." });
+            }
             return res.status(200).json({ result });
         })
         .catch((error) => {

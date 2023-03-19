@@ -11,9 +11,9 @@ const generateStory = async (historicalFact, hero, villain, fictionalWay) => {
     try {
         const response = await openai.createCompletion({
             model: "text-davinci-003",
-            prompt: `Crea un cuento para niños que tenga lugar en el siguiente momento histórico o lugar específico:${historicalFact}, el cual presenta un héroe:${hero} que lucha contra un villano:${villain}. Utiliza los siguientes elementos de ficción o fantasia para dar vida a la historia:${fictionalWay}. El cuento debe respetar los sucesos historicos reales y exponerlos para el aprendisaje, solo se debe sumar la fantasia o ficcion para hacerlo entretenido`,
-            max_tokens: 1000,
-            temperature: 1,
+            prompt: `Crea un cuento para niños centrado en el siguiente hecho o lugar histórico: ${historicalFact}. El cuento debe proporcionar detalles precisos y específicos sobre este hecho histórico para enseñar a los niños acerca de él. Incluye en la historia un héroe: ${hero} y un villano: ${villain}. La narración debe incorporar elementos de ficción y fantasía siguiendo el estilo: ${fictionalWay}. Asegúrate de que el cuento sea entretenido e informativo, permitiendo a los lectores aprender sobre el hecho histórico mientras disfrutan de la trama.`,
+            max_tokens: 1500,
+            temperature: 0.5,
         });
         const { choices } = response.data;
         const [{ text }] = choices;
